@@ -57,7 +57,6 @@ Run `python inference.py --help` for all generation options.
 
 ## Notes
 
-- The supplied pipeline is treated as fixed; the model explains it rather than executing the restoration models.
 - Generated acoustic judgments may be inaccurate. Validate recommendations before using them in an automated workflow.
 - The model may emit `<THINK>` reasoning. Avoid exposing sensitive audio or model output unintentionally.
 
