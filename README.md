@@ -11,21 +11,24 @@ Python 3.10 or newer is recommended. Install a CUDA-compatible PyTorch build for
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -e .
 ```
+
+`requirements.txt` is also provided for environments that do not need an
+editable package installation.
 
 The checkpoint contains approximately 8.4B parameters. GPU inference is recommended; available VRAM and the selected PyTorch precision determine the actual memory requirement.
 
 ## Quick start
 
 ```bash
-python inference.py path/to/audio.wav
+strixae-infer path/to/audio.wav
 ```
 
 Specify a restoration pipeline in execution order:
 
 ```bash
-python inference.py path/to/audio.wav \
+strixae-infer path/to/audio.wav \
   --instruction "Analyze the degradation and explain this pipeline." \
   --pipeline \
     "denoise(MPSENet)" \
@@ -37,23 +40,39 @@ python inference.py path/to/audio.wav \
 Return parsed JSON:
 
 ```bash
-python inference.py path/to/audio.wav --json
+strixae-infer path/to/audio.wav --json
 ```
 
 Use a local checkpoint instead of downloading from Hugging Face:
 
 ```bash
-python inference.py path/to/audio.wav \
+strixae-infer path/to/audio.wav \
   --model-id /path/to/Audio-Reasoner-GRPO-merged
 ```
 
-Run `python inference.py --help` for all generation options.
+Without installing the package, run the source-checkout wrapper with
+`PYTHONPATH=src python scripts/infer.py path/to/audio.wav`.
 
-## Files
+Run `strixae-infer --help` for all generation options.
 
-- `inference.py`: model loading, audio preprocessing, generation, and output parsing.
-- `prompts.py`: restoration task/model catalog and structured GRPO prompt.
-- `requirements.txt`: minimal runtime dependencies extracted for this inference path.
+## Project structure
+
+```text
+strixAE/
+├── src/strixae/
+│   ├── __init__.py
+│   ├── inference.py       # Loading, preprocessing, generation, parsing
+│   ├── outputs.py         # Structured response parsing
+│   └── prompts.py         # Restoration catalog and GRPO prompt
+├── scripts/
+│   └── infer.py           # Source-checkout command wrapper
+├── examples/
+│   └── restoration_pipeline.json
+├── tests/
+│   └── test_prompts.py
+├── pyproject.toml         # Installable Python package and CLI definition
+└── requirements.txt       # Minimal runtime dependencies
+```
 
 ## Notes
 

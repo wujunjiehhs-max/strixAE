@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 from pathlib import Path
 from typing import Any
 
@@ -12,7 +11,8 @@ import librosa
 import torch
 from transformers import AutoProcessor, Qwen2AudioForConditionalGeneration
 
-from prompts import DEFAULT_PIPELINE, SYSTEM_PROMPT, build_restoration_prompt
+from .outputs import parse_response
+from .prompts import DEFAULT_PIPELINE, SYSTEM_PROMPT, build_restoration_prompt
 
 
 DEFAULT_MODEL_ID = "wujunjiehhs/strixAE"
@@ -61,17 +61,6 @@ def build_messages(audio_path: str, prompt: str) -> list[dict[str, Any]]:
             ],
         },
     ]
-
-
-def parse_response(text: str) -> dict[str, str]:
-    """Split a tagged reasoning response without failing on untagged output."""
-    match = re.search(r"<THINK>(.*?)</THINK>", text, flags=re.DOTALL | re.IGNORECASE)
-    if match is None:
-        return {"think": "", "response": text.strip()}
-    return {
-        "think": match.group(1).strip(),
-        "response": text[match.end() :].strip(),
-    }
 
 
 def load_model(model_id: str):

@@ -1,4 +1,4 @@
-"""Prompt definitions extracted from the strixAE GRPO inference workflow."""
+"""Prompt definitions for the strixAE GRPO inference workflow."""
 
 from __future__ import annotations
 

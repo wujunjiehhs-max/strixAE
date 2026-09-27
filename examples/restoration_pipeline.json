@@ -1,0 +1,9 @@
+{
+  "instruction": "Analyze the audio degradation and explain this restoration pipeline.",
+  "pipeline": [
+    "denoise(MPSENet)",
+    "dereverberate(SGMSE_16K)",
+    "separate(SPMamba)",
+    "super_resolution(MossFormer2_SR_48K)"
+  ]
+}
