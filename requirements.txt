@@ -1,0 +1,6 @@
+torch>=2.1
+transformers==4.57.6
+accelerate>=1.0
+librosa>=0.10
+soundfile>=0.12
+safetensors>=0.4

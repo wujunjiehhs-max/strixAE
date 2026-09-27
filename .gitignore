@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.idea/
+.vscode/
+outputs/
+*.wav
+*.mp3
+*.flac
+*.safetensors
+*.bin
+*.pt
+*.pth
+checkpoints/
