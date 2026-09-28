@@ -2,7 +2,7 @@
 
 Inference code for [`wujunjiehhs/strixAE`](https://huggingface.co/wujunjiehhs/strixAE), an Audio-Reasoner checkpoint post-trained with Group Relative Policy Optimization (GRPO) for audio-restoration reasoning.
 
-The model analyzes an audio file and explains a supplied restoration pipeline, including detected audio issues, the role of each restoration model, and the execution-order rationale. Model weights are hosted on Hugging Face and are not stored in this repository. An interactive demo is available at [http://139.196.102.169/](http://139.196.102.169/).
+The model analyzes an audio file and explains a supplied restoration pipeline, including detected audio issues, the role of each restoration model, and the execution-order rationale. Model weights are hosted on Hugging Face and are not stored in this repository. An interactive demo is available at [demo](http://139.196.102.169/).
 
 ## Installation
 
